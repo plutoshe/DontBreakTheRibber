@@ -123,7 +123,7 @@ namespace DontBreakTheRubber
                 spikeBall.y = screenHeight * SKYRATIO;
             }
 
-            spikeBall.dA = 7f;
+ //           spikeBall.dA = 7f;
 
             if (spikeBall.RectangleCollision(balloon))
             {
@@ -173,6 +173,8 @@ namespace DontBreakTheRubber
         void bounce()
         {
             spikeBall.dY = ballBounceSpeed;
+            spikeBall.dA = 7f;
+            //ballBounceSpeed *= (float)1.1;
         }
 
         void KeyboardHandler()
@@ -209,8 +211,12 @@ namespace DontBreakTheRubber
             // Jump if Space (or another jump key) is pressed
             if (state.IsKeyDown(Keys.Space) || state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Up))
             {
-               // Jump if Space is pressed but not held and the dino is on the floor
-                if (!spaceDown && spikeBall.y >= screenHeight * SKYRATIO - 1) spikeBall.dY = ballBounceSpeed;
+                // Jump if Space is pressed but not held and the dino is on the floor
+                if (!spaceDown)
+                {
+                    spikeBall.dA = 0;
+                    spikeBall.angle = spikeBall.angle;
+                }
 
                 spaceDown = true;
             }
