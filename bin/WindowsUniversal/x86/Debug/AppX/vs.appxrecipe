@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-23T17:41:23.060</Modified>
+      <Modified>2018-08-23T18:48:49.633</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\DontBreakTheRubber.exe">
       <PackagePath>entrypoint\DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-23T17:41:22.803</Modified>
+      <Modified>2018-08-23T18:48:49.393</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -584,7 +584,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Core\DontBreakTheRubber.exe">
       <PackagePath>DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-23T17:41:23.057</Modified>
+      <Modified>2018-08-23T18:48:49.631</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

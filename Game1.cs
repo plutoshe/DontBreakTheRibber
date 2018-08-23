@@ -20,6 +20,7 @@ namespace DontBreakTheRubber
 
 
         SpriteClass spikeBall;
+        SpriteClass balloon;
 
         bool spaceDown;
         bool gameStarted;
@@ -78,6 +79,7 @@ namespace DontBreakTheRubber
             
 
             spikeBall = new SpriteClass(GraphicsDevice, "Content/characterSprite.png", ScaleToHighDPI(1f));
+            balloon = new SpriteClass(GraphicsDevice, "Content/characterSprite.png", ScaleToHighDPI(1f));
             // TODO: use this.Content to load your game content here
         }
 
@@ -106,9 +108,12 @@ namespace DontBreakTheRubber
             {
                 spikeBall.dX = 0;
                 spikeBall.dY = 0;
+                balloon.dX = 0;
+                balloon.dY = 0;
             }
 
             spikeBall.Update(elapsedTime);
+            balloon.Update(elapsedTime);
 
             spikeBall.dY += gravitySpeed;
 
@@ -118,12 +123,12 @@ namespace DontBreakTheRubber
                 spikeBall.y = screenHeight * SKYRATIO;
             }
 
-            //if (spikeBall.y <= screenHeight * SKYRATIO)
-            //{
-            //    spaceDown = true;
-            //}
-
             spikeBall.dA = 7f;
+
+            if (spikeBall.RectangleCollision(balloon))
+            {
+                bounce();
+            }
 
             base.Update(gameTime);
         }
@@ -137,6 +142,7 @@ namespace DontBreakTheRubber
             spriteBatch.Begin();
 
             spikeBall.Draw(spriteBatch);
+            balloon.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -156,10 +162,17 @@ namespace DontBreakTheRubber
 
         public void StartGame()
         {
-            // Reset dino position
+    
             spikeBall.x = screenWidth / 2;
             spikeBall.y = screenHeight * SKYRATIO;
+            balloon.x = screenWidth / 2;
+            balloon.y = screenHeight * SKYRATIO;
             gameStarted = true;
+        }
+
+        void bounce()
+        {
+            spikeBall.dY = ballBounceSpeed;
         }
 
         void KeyboardHandler()
@@ -196,7 +209,7 @@ namespace DontBreakTheRubber
             // Jump if Space (or another jump key) is pressed
             if (state.IsKeyDown(Keys.Space) || state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Up))
             {
-                // Jump if Space is pressed but not held and the dino is on the floor
+               // Jump if Space is pressed but not held and the dino is on the floor
                 if (!spaceDown && spikeBall.y >= screenHeight * SKYRATIO - 1) spikeBall.dY = ballBounceSpeed;
 
                 spaceDown = true;
