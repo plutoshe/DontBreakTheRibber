@@ -25,3 +25,4 @@ C:\Users\u1209558\source\repos\WaterPump\WaterPump\obj\x86\Debug\WaterPump.exe
 C:\Users\u1209558\source\repos\WaterPump\WaterPump\obj\x86\Debug\WaterPump.pdb
 C:\Users\u1209558\source\repos\WaterPump\WaterPump\bin\Windows\x86\Debug\Content\ball.xnb
 C:\Users\u1209558\source\repos\WaterPump\WaterPump\bin\Windows\x86\Debug\Content\character_sprite.xnb
+C:\Users\u1209558\source\repos\WaterPump\WaterPump\bin\Windows\x86\Debug\Content\background.xnb

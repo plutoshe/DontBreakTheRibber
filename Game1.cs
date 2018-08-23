@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using WaterPump.Core;
 
 namespace WaterPump
 {
@@ -13,18 +15,27 @@ namespace WaterPump
         Texture2D texture;
         Vector2 pos;
     }
+
+   
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Vector2 ScreenSize = new Vector2(1024, 5012);
+        public static int ScreenHeight;
+        public static int ScreenWidth;
         Vector2 GraphicSize = new Vector2(1024, 1024);
 
         Texture2D ballTexture;
         Rectangle ballRectangle;
         Vector2 ballOrigin;
         Vector2 ballPosition;
+
+        Texture2D backgroundTexture;
+        float backgroundScale;
+
+        private Camera _camera;
 
         float ballYSpeed = 0;
         bool DirectionYCouldChange = true;
@@ -39,7 +50,8 @@ namespace WaterPump
             graphics.IsFullScreen = false;
             graphics.PreferredBackBufferWidth = 600;
             graphics.PreferredBackBufferHeight = 600;
-            
+            ScreenHeight = 600;
+            ScreenWidth = 600;
             Content.RootDirectory = "Content";
         }
 
@@ -66,7 +78,11 @@ namespace WaterPump
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ballTexture = Content.Load<Texture2D>("character_sprite");
-            ballPosition = new Vector2(300, 250);
+            backgroundTexture = Content.Load<Texture2D>("background");
+            backgroundScale = ScreenWidth * 1.0f / backgroundTexture.Width;
+            ballPosition = new Vector2(300, 300);
+            ballRectangle = new Rectangle((int)ballPosition.X, (int)ballPosition.Y, ballTexture.Width, ballTexture.Height);
+            _camera = new Camera();
             // TODO: use this.Content to load your game content here
         }
 
@@ -91,6 +107,7 @@ namespace WaterPump
 
             // TODO: Add your update logic here
             ballRectangle = new Rectangle((int)ballPosition.X, (int)ballPosition.Y, ballTexture.Width, ballTexture.Height);
+            
             ballOrigin = new Vector2(ballRectangle.Width / 2, ballRectangle.Height / 2);
             ballPosition.Y += ballYSpeed;
             rotation += 0.1f;
@@ -99,9 +116,15 @@ namespace WaterPump
             {
                 ballYSpeed = -ballYSpeed; DirectionYCouldChange = false;
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.Up)) ballPosition.Y -= 3;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down)) ballPosition.Y += 3;
+
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right)) rotation += 0.1f;
             if (Keyboard.GetState().IsKeyDown(Keys.Left)) rotation -= 0.1f;
+
+            _camera.Follow(ballPosition, ballRectangle);
+
             base.Update(gameTime);
         }
 
@@ -113,7 +136,7 @@ namespace WaterPump
             var screenHeight = Window.ClientBounds.Height;
             System.Console.WriteLine(Window.ClientBounds.Width);
             System.Console.WriteLine(Window.ClientBounds.Height);*/
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+
             /*
             var initialPositionX = screenWidth / 2;
             var ínitialPositionY = (int)(screenHeight * 0.8);
@@ -124,7 +147,17 @@ namespace WaterPump
             for (int i = 0; i < 10000; i++)
                 colorData[i] = Color.White;
             texture.SetData<Color>(colorData);*/
-            spriteBatch.Begin();
+
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            //spriteBatch.Begin();
+       
+            spriteBatch.Begin(transformMatrix: _camera.Transform);
+            var s = new Rectangle((int)0, (int)0, backgroundTexture.Width, backgroundTexture.Height);
+            Console.WriteLine(backgroundScale);
+            Console.WriteLine(new Vector2(backgroundTexture.Width / 2, backgroundTexture.Height / 2));
+            spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0.0f, Vector2.Zero, backgroundScale, SpriteEffects.None, 0f);
             spriteBatch.Draw(ballTexture, ballPosition, null, Color.White, rotation, ballOrigin, 1f, SpriteEffects.None, 0);
             
             spriteBatch.End();

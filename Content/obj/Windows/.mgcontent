@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/u1209558/source/repos/WaterPump/WaterPump/Content/ball.jpg</File>
+    <File>C:/Users/u1209558/source/repos/WaterPump/WaterPump/Content/background.png</File>
     <File>C:/Users/u1209558/source/repos/WaterPump/WaterPump/Content/character_sprite.png</File>
   </SourceFiles>
 </SourceFileCollection>
