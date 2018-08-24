@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/start-splash.png</SourceFile>
-  <SourceTime>2018-08-21T12:19:08.6493717-06:00</SourceTime>
+  <SourceTime>2018-08-24T13:43:42.7201793-06:00</SourceTime>
   <DestFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/bin/WindowsStoreApp/Content/start-splash.xnb</DestFile>
-  <DestTime>2018-08-24T13:27:46.3432571-06:00</DestTime>
+  <DestTime>2018-08-24T14:07:34.9977965-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-08-04T14:59:28-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
