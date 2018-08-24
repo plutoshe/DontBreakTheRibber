@@ -220,3 +220,7 @@ C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\obj\x86\Deb
 C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Content\characterSprite.xnb
+C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Content\game-over.xnb
+C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Content\GameState.xnb
+C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Content\Score.xnb
+C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Content\start-splash.xnb

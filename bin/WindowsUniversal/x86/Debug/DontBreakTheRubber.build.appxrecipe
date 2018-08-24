@@ -397,6 +397,12 @@
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\characterSprite.png">
       <PackagePath>Content\characterSprite.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\game-over.png">
+      <PackagePath>Content\game-over.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\start-splash.png">
+      <PackagePath>Content\start-splash.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
     </AppxPackagedFile>
@@ -428,6 +434,18 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\characterSprite.xnb">
       <PackagePath>Content\characterSprite.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\game-over.xnb">
+      <PackagePath>Content\game-over.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\GameState.xnb">
+      <PackagePath>Content\GameState.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\Score.xnb">
+      <PackagePath>Content\Score.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\start-splash.xnb">
+      <PackagePath>Content\start-splash.xnb</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>

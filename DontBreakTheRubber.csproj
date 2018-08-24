@@ -115,6 +115,8 @@
   <ItemGroup>
     <Content Include="Content\background.png" />
     <Content Include="Content\characterSprite.png" />
+    <Content Include="Content\game-over.png" />
+    <Content Include="Content\start-splash.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

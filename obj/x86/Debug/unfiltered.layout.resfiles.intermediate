@@ -9,5 +9,11 @@ Assets\Wide310x150Logo.scale-200.png
 Content\background.png
 Content\background.xnb
 Content\characterSprite.xnb
+Content\game-over.xnb
+Content\GameState.xnb
+Content\Score.xnb
+Content\start-splash.xnb
 Content\characterSprite.png
+Content\game-over.png
+Content\start-splash.png
 Properties\Default.rd.xml

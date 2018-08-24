@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-23T19:02:03.034</Modified>
+      <Modified>2018-08-24T19:41:16.783</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\DontBreakTheRubber.exe">
       <PackagePath>entrypoint\DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-23T19:02:02.786</Modified>
+      <Modified>2018-08-24T19:41:16.535</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -531,6 +531,14 @@
       <PackagePath>Content\characterSprite.png</PackagePath>
       <Modified>2018-08-23T16:48:34.707</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\game-over.png">
+      <PackagePath>Content\game-over.png</PackagePath>
+      <Modified>2018-08-21T18:19:08.636</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\start-splash.png">
+      <PackagePath>Content\start-splash.png</PackagePath>
+      <Modified>2018-08-21T18:19:08.649</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2018-08-04T22:04:40.000</Modified>
@@ -573,6 +581,22 @@
       <PackagePath>Content\characterSprite.xnb</PackagePath>
       <Modified>2018-08-23T17:31:28.405</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\game-over.xnb">
+      <PackagePath>Content\game-over.xnb</PackagePath>
+      <Modified>2018-08-24T19:27:45.834</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\GameState.xnb">
+      <PackagePath>Content\GameState.xnb</PackagePath>
+      <Modified>2018-08-24T19:27:46.071</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\Score.xnb">
+      <PackagePath>Content\Score.xnb</PackagePath>
+      <Modified>2018-08-24T19:27:46.125</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\Content\bin\WindowsStoreApp\Content\start-splash.xnb">
+      <PackagePath>Content\start-splash.xnb</PackagePath>
+      <Modified>2018-08-24T19:27:46.343</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2018-08-21T17:13:27.255</Modified>
@@ -580,11 +604,11 @@
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-23T17:31:29.161</Modified>
+      <Modified>2018-08-24T19:27:47.596</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u0645467\source\repos\DontBreakTheRubber\DontBreakTheRubber\bin\WindowsUniversal\x86\Debug\Core\DontBreakTheRubber.exe">
       <PackagePath>DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-23T19:02:03.032</Modified>
+      <Modified>2018-08-24T19:41:16.781</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
