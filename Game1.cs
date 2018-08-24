@@ -45,9 +45,6 @@ namespace DontBreakTheRubber
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            //graphics.IsFullScreen = false;
-            //graphics.PreferredBackBufferWidth = 600;
-            //graphics.PreferredBackBufferHeight = 600;
 
             Content.RootDirectory = "Content";
         }
@@ -145,9 +142,7 @@ namespace DontBreakTheRubber
                 spikeBall.dY = 0;
                 spikeBall.y = screenHeight * SKYRATIO;
             }
-
- //           spikeBall.dA = 7f;
-
+            
             if (spikeBall.RectangleCollision(balloon))
             {
                 float tempAngle = ((float)RadianToDegree(spikeBall.angle) % 360);
@@ -250,7 +245,6 @@ namespace DontBreakTheRubber
                 spinSpeed *= (float)1.25;
             }
             spikeBall.dA = spinSpeed;
-            //ballBounceSpeed *= (float)1.1;
         }
 
         void KeyboardHandler()
@@ -261,7 +255,6 @@ namespace DontBreakTheRubber
             if (state.IsKeyDown(Keys.Escape)) Exit();
 
             // Start the game if Space is pressed.
-            // Exit the keyboard handler method early, preventing the dino from jumping on the same keypress.
             if (!gameStarted)
             {
                 if (state.IsKeyDown(Keys.Space))
@@ -284,10 +277,10 @@ namespace DontBreakTheRubber
                 }
             }
 
-            // Jump if Space (or another jump key) is pressed
-            if (state.IsKeyDown(Keys.Space) || state.IsKeyDown(Keys.W) || state.IsKeyDown(Keys.Up))
+            // stop spinning if space is pressed
+            if (state.IsKeyDown(Keys.Space))
             {
-                // Jump if Space is pressed but not held and the dino is on the floor
+                // stop spinning once space is released
                 if (!spaceDown)
                 {
                     spikeBall.dA = 0;
