@@ -4,12 +4,12 @@
   <Platform>WindowsStoreApp</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/background.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/characterSprite.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/game-over.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/GameState.spritefont</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/Score.spritefont</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/start-splash.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/background.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/character_sprite.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/game-over.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/GameState.spritefont</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/Score.spritefont</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/start-splash.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Windows.Graphics.Display;
 using System;
 using Windows.UI.ViewManagement;
+using DontBreakTheRubber.Core;
 
 namespace DontBreakTheRubber
 {
@@ -33,14 +34,18 @@ namespace DontBreakTheRubber
         bool gameOver;
         bool timeToSpeedUp;
 
-        float screenWidth;
-        float screenHeight;
+        public static float screenWidth;
+        public static float screenHeight;
+        public static float groundHeight;
 
         float ballBounceSpeed;
         float gravitySpeed;
         float spinSpeed;
 
-
+        Texture2D backgroundTexture;
+        float backgroundScaleRatio;
+        Camera _camera;
+        //private object console;
 
         public Game1()
         {
@@ -60,9 +65,13 @@ namespace DontBreakTheRubber
             // TODO: Add your initialization logic here
 
             base.Initialize();
-
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            /*graphics.PreferredBackBufferWidth = 600;
+            graphics.PreferredBackBufferHeight = 600;
+            screenWidth = graphics.PreferredBackBufferWidth;
+            screenHeight = graphics.PreferredBackBufferHeight;*/
+            //System.Diagnostics.Debug.WriteLine("aaa" + screenWidth.ToString());
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
 
             screenHeight = ScaleToHighDPI((float)ApplicationView.GetForCurrentView().VisibleBounds.Height);
             screenWidth = ScaleToHighDPI((float)ApplicationView.GetForCurrentView().VisibleBounds.Width);
@@ -91,13 +100,19 @@ namespace DontBreakTheRubber
 
             startGameSplash = Content.Load<Texture2D>("start-splash");
             gameOverTexture = Content.Load<Texture2D>("game-over");
+            backgroundTexture = Content.Load<Texture2D>("background");
 
-
-            spikeBall = new SpriteClass(GraphicsDevice, "Content/characterSprite.png", ScaleToHighDPI(1f));
-            balloon = new SpriteClass(GraphicsDevice, "Content/characterSprite.png", ScaleToHighDPI(1f));
-
+            spikeBall = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
+            balloon = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
+            
+            //
+            
             scoreFont = Content.Load<SpriteFont>("Score");
             stateFont = Content.Load<SpriteFont>("GameState");
+            _camera = new Camera();
+            
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -137,10 +152,10 @@ namespace DontBreakTheRubber
 
             spikeBall.dY += gravitySpeed;
 
-            if (spikeBall.y > screenHeight * SKYRATIO)
+            if (spikeBall.y > groundHeight)
             {
                 spikeBall.dY = 0;
-                spikeBall.y = screenHeight * SKYRATIO;
+                spikeBall.y = groundHeight;
             }
             
             if (spikeBall.RectangleCollision(balloon))
@@ -155,43 +170,18 @@ namespace DontBreakTheRubber
                     gameOver = true;
                 }
             }
-
+            _camera.Follow(spikeBall);
             base.Update(gameTime);
         }
 
 
         protected override void Draw(GameTime gameTime)
         {
-
             GraphicsDevice.Clear(Color.CornflowerBlue); // Clear the screen
-
-            spriteBatch.Begin();
-            if (gameOver)
-            {
-                // Draw game over texture
-                spriteBatch.Draw(gameOverTexture, new Vector2(screenWidth / 2 - gameOverTexture.Width / 2, screenHeight / 4 - gameOverTexture.Width / 2), Color.White);
-
-                String pressEnter = "Press Enter to restart!";
-
-                // Measure the size of text in the given font
-                Vector2 pressEnterSize = stateFont.MeasureString(pressEnter);
-
-                // Draw the text horizontally centered
-                spriteBatch.DrawString(stateFont, pressEnter, new Vector2(screenWidth / 2 - pressEnterSize.X / 2, screenHeight - 200), Color.White);
-
-                // If the game is over, draw the score in red
-                spriteBatch.DrawString(scoreFont, score.ToString(), new Vector2(screenWidth - 100, 50), Color.Red);
-            }
-            else
-            {
-                spriteBatch.DrawString(scoreFont, score.ToString(), new Vector2(screenWidth - 100, 50), Color.Black);
-            }
-
-            spikeBall.Draw(spriteBatch);
-            balloon.Draw(spriteBatch);
 
             if (!gameStarted)
             {
+                spriteBatch.Begin();
                 // Fill the screen with black before the game starts
                 spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, (int)screenWidth, (int)screenHeight), Color.White);
 
@@ -205,7 +195,44 @@ namespace DontBreakTheRubber
                 // Draw the text horizontally centered
                 spriteBatch.DrawString(stateFont, title, new Vector2(screenWidth / 2 - titleSize.X / 2, screenHeight / 3), Color.ForestGreen);
                 spriteBatch.DrawString(stateFont, pressSpace, new Vector2(screenWidth / 2 - pressSpaceSize.X / 2, screenHeight / 2), Color.White);
+                spriteBatch.End();
+                return;
             }
+            
+            System.Diagnostics.Debug.WriteLine(_camera.Transform);
+            spriteBatch.Begin(transformMatrix: _camera.Transform);
+
+
+            spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), backgroundScaleRatio, SpriteEffects.None, 1);
+            spikeBall.Draw(spriteBatch);
+            
+            if (gameOver)
+            {
+                 
+                
+                // Draw game over texture over camera
+                spriteBatch.Draw(gameOverTexture, new Vector2(screenWidth / 2 - gameOverTexture.Width / 2, spikeBall.y - 400), Color.White);
+
+                String pressEnter = "Press Enter to restart!";
+
+                // Measure the size of text in the given font
+                Vector2 pressEnterSize = stateFont.MeasureString(pressEnter);
+
+                // Draw the text horizontally centered
+                spriteBatch.DrawString(stateFont, pressEnter, new Vector2(screenWidth / 2 - pressEnterSize.X / 2, spikeBall.y - 100), Color.White);
+
+                // If the game is over, draw the score in red
+                spriteBatch.DrawString(scoreFont, score.ToString(), new Vector2(screenWidth - 100, spikeBall.y - 300), Color.Red);
+            }
+            else
+            {
+                spriteBatch.DrawString(scoreFont, score.ToString(), new Vector2(screenWidth - 100, spikeBall.y - 300), Color.Black);
+            }
+
+            
+            //balloon.Draw(spriteBatch);
+
+            
 
             spriteBatch.End();
 
@@ -225,13 +252,20 @@ namespace DontBreakTheRubber
 
         public void StartGame()
         {
-    
+            backgroundScaleRatio = screenWidth / backgroundTexture.Width;
+            groundHeight = backgroundTexture.Height * backgroundScaleRatio *(float)(0.9);
+            System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
+            System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
+            System.Diagnostics.Debug.WriteLine(groundHeight);
+            
             spikeBall.x = screenWidth / 2;
-            spikeBall.y = screenHeight * SKYRATIO;
+
+            spikeBall.y = groundHeight;
             spikeBall.angle = 100;
             spikeBall.dA = 0;
+
             balloon.x = screenWidth / 2;
-            balloon.y = screenHeight * SKYRATIO;
+            balloon.y = groundHeight;
             score = -5;
             spinSpeed = 7f;
         }
