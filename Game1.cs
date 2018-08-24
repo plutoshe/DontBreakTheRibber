@@ -19,7 +19,7 @@ namespace DontBreakTheRubber
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        int score = 0;
+        int score = -1;
 
         SpriteClass spikeBall;
         SpriteClass balloon;
@@ -32,7 +32,7 @@ namespace DontBreakTheRubber
         bool spaceDown;
         bool gameStarted;
         bool gameOver;
-        bool timeToSpeedUp;
+        bool upToDown;
 
         public static float screenWidth;
         public static float screenHeight;
@@ -41,6 +41,7 @@ namespace DontBreakTheRubber
         float ballBounceSpeed;
         float gravitySpeed;
         float spinSpeed;
+        float previousSpeed;
 
         Texture2D backgroundTexture;
         float backgroundScaleRatio;
@@ -79,12 +80,13 @@ namespace DontBreakTheRubber
             spaceDown = false;
             gameStarted = false;
             gameOver = false;
-            timeToSpeedUp = false;
+            upToDown = false;
             spinSpeed = 7f;
+            previousSpeed = spikeBall.dY;
 
             ballBounceSpeed = ScaleToHighDPI(-1200f);
             gravitySpeed = ScaleToHighDPI(30f);
-            score = 0;
+            score = -1;
             this.IsMouseVisible = false;
 
         }
@@ -147,6 +149,11 @@ namespace DontBreakTheRubber
                 balloon.dY = 0;
             }
 
+            if(previousSpeed <= 0 && spikeBall.dY > 0)
+            {
+                upToDown = true;
+            }
+
             spikeBall.Update(elapsedTime);
             balloon.Update(elapsedTime);
 
@@ -163,7 +170,7 @@ namespace DontBreakTheRubber
                 float tempAngle = ((float)RadianToDegree(spikeBall.angle) % 360);
                 if((tempAngle > 179 || tempAngle == 0) && !gameOver && gameStarted)
                 {
-                    bounce();
+                    bounce(tempAngle);
                 }
                 else
                 {
@@ -265,14 +272,30 @@ namespace DontBreakTheRubber
             spikeBall.dA = 0;
 
             balloon.x = screenWidth / 2;
+
             balloon.y = groundHeight;
-            score = -5;
+            score = -1;
             spinSpeed = 7f;
+            ballBounceSpeed = ScaleToHighDPI(-1200f);
         }
 
-        void bounce()
+        void bounce(float angle)
         {
-            score++;
+            if(upToDown)
+            {
+                if (angle > 240 && angle < 300)
+                {
+                    score += 3;
+                    ballBounceSpeed += -100;
+                }
+                else
+                {
+                    score++;
+                    ballBounceSpeed += -50;
+                }
+                upToDown = false;
+            }
+
             spikeBall.dY = ballBounceSpeed;
             if(score > 0 && (score % 2 == 0))
             {
@@ -297,6 +320,7 @@ namespace DontBreakTheRubber
                     gameStarted = true;
                     spaceDown = true;
                     gameOver = false;
+                    upToDown = false;
                 }
                 return;
             }

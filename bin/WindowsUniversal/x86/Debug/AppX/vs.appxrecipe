@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\bin\WindowsUniversal\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-24T22:33:45.161</Modified>
+      <Modified>2018-08-24T22:40:42.531</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\bin\WindowsUniversal\x86\Debug\DontBreakTheRubber.exe">
       <PackagePath>entrypoint\DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-24T22:33:44.920</Modified>
+      <Modified>2018-08-24T22:40:42.016</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\.nuget\packages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -587,28 +587,28 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\Content\bin\WindowsStoreApp\Content\game-over.xnb">
       <PackagePath>Content\game-over.xnb</PackagePath>
-      <Modified>2018-08-24T19:55:53.186</Modified>
+      <Modified>2018-08-24T22:40:41.127</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\Content\bin\WindowsStoreApp\Content\GameState.xnb">
       <PackagePath>Content\GameState.xnb</PackagePath>
-      <Modified>2018-08-24T19:55:53.477</Modified>
+      <Modified>2018-08-24T22:40:41.330</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\Content\bin\WindowsStoreApp\Content\Score.xnb">
       <PackagePath>Content\Score.xnb</PackagePath>
-      <Modified>2018-08-24T19:55:53.525</Modified>
+      <Modified>2018-08-24T22:40:41.377</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\Content\bin\WindowsStoreApp\Content\start-splash.xnb">
       <PackagePath>Content\start-splash.xnb</PackagePath>
-      <Modified>2018-08-24T19:55:53.743</Modified>
+      <Modified>2018-08-24T22:40:41.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\bin\WindowsUniversal\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-08-24T21:56:55.815</Modified>
+      <Modified>2018-08-24T22:40:42.349</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\u1209558\source\repos\DontBreakTheRibber\bin\WindowsUniversal\x86\Debug\Core\DontBreakTheRubber.exe">
       <PackagePath>DontBreakTheRubber.exe</PackagePath>
-      <Modified>2018-08-24T22:33:45.158</Modified>
+      <Modified>2018-08-24T22:40:42.529</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
