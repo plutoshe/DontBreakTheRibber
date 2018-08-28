@@ -314,7 +314,7 @@ namespace DontBreakTheRubber
         {
             if(upToDown)
             {
-                if ((angle >= 330 && angle <= 360) || (angle >= 0 && angle <= 30))
+                if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle <= 45))
                 {
                     score += 3;
                     ballBounceSpeed += -400;
