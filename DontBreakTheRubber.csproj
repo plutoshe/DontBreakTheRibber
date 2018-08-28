@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\background.png" />
+    <Content Include="Content\Background_compressed.png" />
     <Content Include="Content\character_sprite.png" />
     <Content Include="Content\game-over.png" />
     <Content Include="Content\start-splash.png" />

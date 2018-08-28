@@ -102,7 +102,7 @@ namespace DontBreakTheRubber
 
             startGameSplash = Content.Load<Texture2D>("start-splash");
             gameOverTexture = Content.Load<Texture2D>("game-over");
-            backgroundTexture = Content.Load<Texture2D>("background");
+            backgroundTexture = Content.Load<Texture2D>("Background_compressed");
 
             spikeBall = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
             balloon = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
@@ -217,7 +217,7 @@ namespace DontBreakTheRubber
                 // Fill the screen with black before the game starts
                 spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, (int)screenWidth, (int)screenHeight), Color.White);
 
-                String title = "PARTY BOUNCE";
+                String title = "PARTY HOPPER";
                 String pressSpace = "Press Space to start";
 
                 // Measure the size of text in the given font
@@ -239,10 +239,10 @@ namespace DontBreakTheRubber
             spikeBall.Draw(spriteBatch);
 
             
-            DrawLine(spriteBatch, //draw line
-                     new Vector2(0, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //start of line
-                     new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2) //end of line
-            );
+            //DrawLine(spriteBatch, //draw line
+            //         new Vector2(0, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //start of line
+            //         new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2) //end of line
+            //);
 
             if (gameOver)
             {
@@ -291,7 +291,7 @@ namespace DontBreakTheRubber
         public void StartGame()
         {
             backgroundScaleRatio = screenWidth / backgroundTexture.Width;
-            groundHeight = backgroundTexture.Height * backgroundScaleRatio *(float)(0.9);
+            groundHeight = (backgroundTexture.Height - 240) * backgroundScaleRatio;
             System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
             System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
             System.Diagnostics.Debug.WriteLine(groundHeight);

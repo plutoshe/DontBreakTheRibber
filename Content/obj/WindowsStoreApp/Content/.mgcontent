@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/background.png</File>
+    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/Background_compressed.png</File>
     <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/character_sprite.png</File>
     <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/game-over.png</File>
     <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/GameState.spritefont</File>
@@ -12,6 +13,7 @@
     <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/start-splash.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
