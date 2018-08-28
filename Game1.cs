@@ -19,7 +19,7 @@ namespace DontBreakTheRubber
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        int score = -1;
+        int score = 0;
 
         SpriteClass spikeBall;
         SpriteClass balloon;
@@ -31,6 +31,9 @@ namespace DontBreakTheRubber
 
         bool spaceDown;
         bool gameStarted;
+        bool instructionsViewed;
+        bool controlsViewed;
+        bool titleViewed;
         bool gameOver;
         bool upToDown;
 
@@ -79,6 +82,9 @@ namespace DontBreakTheRubber
 
             spaceDown = false;
             gameStarted = false;
+            instructionsViewed = false;
+            controlsViewed = false;
+            titleViewed = false;
             gameOver = false;
             upToDown = false;
             spinSpeed = 7f;
@@ -86,7 +92,7 @@ namespace DontBreakTheRubber
 
             ballBounceSpeed = ScaleToHighDPI(-1200f);
             gravitySpeed = ScaleToHighDPI(30f);
-            score = -1;
+            score = 0;
             this.IsMouseVisible = false;
 
         }
@@ -148,15 +154,23 @@ namespace DontBreakTheRubber
                 balloon.dY = 0;
             }
 
-            if(previousSpeed <= 0 && spikeBall.dY > 0)
-            {
-                upToDown = true;
-            }
-
+            
+            
             spikeBall.Update(elapsedTime);
             balloon.Update(elapsedTime);
 
+            //TODO Fix Score
+            previousSpeed = spikeBall.dY;
             spikeBall.dY += gravitySpeed;
+
+            if (previousSpeed < 0 && spikeBall.dY >= 0)
+            {
+                if ((int)(spikeBall.texture.Height * spikeBall.scale / 2) > score)
+                {
+                    score = (int)(spikeBall.texture.Height * spikeBall.scale / 2);
+                }
+                upToDown = true;
+            }
 
             if (spikeBall.y > groundHeight)
             {
@@ -211,13 +225,51 @@ namespace DontBreakTheRubber
         {
             GraphicsDevice.Clear(Color.CornflowerBlue); // Clear the screen
             
-            if (!gameStarted)
+            if (!titleViewed)
             {
                 spriteBatch.Begin();
                 // Fill the screen with black before the game starts
                 spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, (int)screenWidth, (int)screenHeight), Color.White);
 
                 String title = "PARTY HOPPER";
+                String pressSpace = "Press Space";
+
+                // Measure the size of text in the given font
+                Vector2 titleSize = stateFont.MeasureString(title);
+                Vector2 pressSpaceSize = stateFont.MeasureString(pressSpace);
+
+                // Draw the text horizontally centered
+                spriteBatch.DrawString(stateFont, title, new Vector2(screenWidth / 2 - titleSize.X / 2, screenHeight / 3), Color.CornflowerBlue);
+                spriteBatch.DrawString(stateFont, pressSpace, new Vector2(screenWidth / 2 - pressSpaceSize.X / 2, screenHeight / 2), Color.White);
+                spriteBatch.End();
+                return;
+            }
+            if (!controlsViewed)
+            {
+                spriteBatch.Begin();
+                // Fill the screen with black before the game starts
+                spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, (int)screenWidth, (int)screenHeight), Color.White);
+
+                String title = "Pressing Space Bar will stop you from spinning";
+                String pressSpace = "Press Space";
+
+                // Measure the size of text in the given font
+                Vector2 titleSize = stateFont.MeasureString(title);
+                Vector2 pressSpaceSize = stateFont.MeasureString(pressSpace);
+
+                // Draw the text horizontally centered
+                spriteBatch.DrawString(stateFont, title, new Vector2(screenWidth / 2 - titleSize.X / 2, screenHeight / 3), Color.CornflowerBlue);
+                spriteBatch.DrawString(stateFont, pressSpace, new Vector2(screenWidth / 2 - pressSpaceSize.X / 2, screenHeight / 2), Color.White);
+                spriteBatch.End();
+                return;
+            }
+            if (!instructionsViewed)
+            {
+                spriteBatch.Begin();
+                // Fill the screen with black before the game starts
+                spriteBatch.Draw(startGameSplash, new Rectangle(0, 0, (int)screenWidth, (int)screenHeight), Color.White);
+
+                String title = "Don't ruin your party hat!";
                 String pressSpace = "Press Space to start";
 
                 // Measure the size of text in the given font
@@ -230,7 +282,7 @@ namespace DontBreakTheRubber
                 spriteBatch.End();
                 return;
             }
-            
+
             System.Diagnostics.Debug.WriteLine(_camera.Transform);
             spriteBatch.Begin(transformMatrix: _camera.Transform);
 
@@ -305,7 +357,7 @@ namespace DontBreakTheRubber
             balloon.x = screenWidth / 2;
 
             balloon.y = groundHeight;
-            score = -1;
+            score = 0;
             spinSpeed = 7f;
             ballBounceSpeed = ScaleToHighDPI(-1200f);
         }
@@ -314,24 +366,33 @@ namespace DontBreakTheRubber
         {
             if(upToDown)
             {
-                if ((angle >= 315 && angle <= 360) || (angle >= 0 && angle <= 45))
+                if ((angle > 340 && angle <= 360) || (angle >= 0 && angle < 20))
                 {
-                    score += 3;
-                    ballBounceSpeed += -400;
+                    //score += 4;
+                    ballBounceSpeed += -250;
+                }
+                else if((angle > 305 && angle <= 340) || (angle >= 20 && angle < 55))
+                {
+                    //score += 3;
+                    ballBounceSpeed += -100;
+                    spinSpeed *= (float)1.05;
+                }
+                else if ((angle > 270 && angle <= 305) || (angle >= 55 && angle < 90))
+                {
+                    //score += 2;
+                    ballBounceSpeed += -50;
+                    spinSpeed *= (float)1.1;
                 }
                 else
                 {
-                    score++;
-                    ballBounceSpeed += -250;
+                    //score++;
+                    ballBounceSpeed += 50;
+                    spinSpeed *= (float)1.2;
                 }
                 upToDown = false;
             }
 
             spikeBall.dY = ballBounceSpeed;
-            if(score > 0 && (score % 2 == 0))
-            {
-                spinSpeed *= (float)1.15;
-            }
             spikeBall.dA = spinSpeed;
         }
 
@@ -343,10 +404,29 @@ namespace DontBreakTheRubber
             if (state.IsKeyDown(Keys.Escape)) Exit();
 
             // Start the game if Space is pressed.
-            if (!gameStarted)
+            if (!titleViewed)
             {
                 if (state.IsKeyDown(Keys.Space))
                 {
+                    titleViewed = true;
+                    spaceDown = true;
+                }
+                return;
+            }
+            if (!controlsViewed && !spaceDown)
+            {
+                if (state.IsKeyDown(Keys.Space))
+                {
+                    controlsViewed = true;
+                    spaceDown = true;
+                }
+                return;
+            }
+            if (!instructionsViewed && !spaceDown)
+            {
+                if (state.IsKeyDown(Keys.Space))
+                {
+                    instructionsViewed = true;
                     StartGame();
                     gameStarted = true;
                     spaceDown = true;
@@ -355,6 +435,9 @@ namespace DontBreakTheRubber
                 }
                 return;
             }
+
+
+
 
             // Restart the game if Enter is pressed
             if (gameOver)
