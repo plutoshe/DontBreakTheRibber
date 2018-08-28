@@ -104,11 +104,10 @@ namespace DontBreakTheRubber
             gameOverTexture = Content.Load<Texture2D>("game-over");
             backgroundTexture = Content.Load<Texture2D>("Background_compressed");
 
-            spikeBall = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
+            spikeBall = new SpriteClass(GraphicsDevice, "Content/character_test.png", ScaleToHighDPI(1f));
             balloon = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
-            
+
             //
-            
             scoreFont = Content.Load<SpriteFont>("Score");
             stateFont = Content.Load<SpriteFont>("GameState");
             _camera = new Camera();
@@ -143,7 +142,7 @@ namespace DontBreakTheRubber
             {
                 spikeBall.dX = 0;
                 spikeBall.dY = 0;
-                spikeBall.angle = 100;
+                spikeBall.angle = DegreeToRadian(90);
                 spikeBall.dA = 0;
                 balloon.dX = 0;
                 balloon.dY = 0;
@@ -165,10 +164,11 @@ namespace DontBreakTheRubber
                 spikeBall.y = groundHeight;
             }
             
-            if (spikeBall.RectangleCollision(balloon))
+            if (spikeBall.RectangleCollision(balloon) && spikeBall.dY >= 0)
             {
+                System.Diagnostics.Debug.WriteLine(spikeBall.angle);
                 float tempAngle = ((float)RadianToDegree(spikeBall.angle) % 360);
-                if((tempAngle > 179 || tempAngle == 0) && !gameOver && gameStarted)
+                if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
                     bounce(tempAngle);
                 }
@@ -206,11 +206,11 @@ namespace DontBreakTheRubber
                 0);
 
         }
-
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue); // Clear the screen
-
+            
             if (!gameStarted)
             {
                 spriteBatch.Begin();
@@ -299,7 +299,7 @@ namespace DontBreakTheRubber
             spikeBall.x = screenWidth / 2;
 
             spikeBall.y = groundHeight;
-            spikeBall.angle = 100;
+            spikeBall.angle = DegreeToRadian(90);
             spikeBall.dA = 0;
 
             balloon.x = screenWidth / 2;
@@ -384,6 +384,11 @@ namespace DontBreakTheRubber
         double RadianToDegree(float angle)
         {
             return angle * (180.0 / Math.PI);
+        }
+
+        float DegreeToRadian(double radian)
+        {
+            return (float)(radian * Math.PI / 180.0);
         }
 
     }
