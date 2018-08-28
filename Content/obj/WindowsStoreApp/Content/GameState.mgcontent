@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/GameState.spritefont</SourceFile>
-  <SourceTime>2018-08-24T13:52:25.9985124-06:00</SourceTime>
-  <DestFile>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/bin/WindowsStoreApp/Content/GameState.xnb</DestFile>
-  <DestTime>2018-08-28T10:20:13.5108582-06:00</DestTime>
+  <SourceFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/GameState.spritefont</SourceFile>
+  <SourceTime>2018-08-24T13:43:42.6832356-06:00</SourceTime>
+  <DestFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/bin/WindowsStoreApp/Content/GameState.xnb</DestFile>
+  <DestTime>2018-08-28T10:57:43.1796295-06:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2018-08-04T14:59:28-06:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
