@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/game-over.png</SourceFile>
-  <SourceTime>2018-08-24T13:52:26.034501-06:00</SourceTime>
-  <DestFile>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/bin/WindowsStoreApp/Content/game-over.xnb</DestFile>
-  <DestTime>2018-08-24T16:40:41.1272739-06:00</DestTime>
+  <SourceFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/game-over.png</SourceFile>
+  <SourceTime>2018-08-24T13:43:42.7151836-06:00</SourceTime>
+  <DestFile>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/bin/WindowsStoreApp/Content/game-over.xnb</DestFile>
+  <DestTime>2018-08-28T09:05:19.6404541-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-08-04T14:59:28-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

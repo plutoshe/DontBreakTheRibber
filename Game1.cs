@@ -225,7 +225,7 @@ namespace DontBreakTheRubber
                 Vector2 pressSpaceSize = stateFont.MeasureString(pressSpace);
 
                 // Draw the text horizontally centered
-                spriteBatch.DrawString(stateFont, title, new Vector2(screenWidth / 2 - titleSize.X / 2, screenHeight / 3), Color.ForestGreen);
+                spriteBatch.DrawString(stateFont, title, new Vector2(screenWidth / 2 - titleSize.X / 2, screenHeight / 3), Color.CornflowerBlue);
                 spriteBatch.DrawString(stateFont, pressSpace, new Vector2(screenWidth / 2 - pressSpaceSize.X / 2, screenHeight / 2), Color.White);
                 spriteBatch.End();
                 return;
@@ -330,7 +330,7 @@ namespace DontBreakTheRubber
             spikeBall.dY = ballBounceSpeed;
             if(score > 0 && (score % 2 == 0))
             {
-                spinSpeed *= (float)1.25;
+                spinSpeed *= (float)1.05;
             }
             spikeBall.dA = spinSpeed;
         }
