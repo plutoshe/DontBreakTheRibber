@@ -238,7 +238,7 @@ namespace DontBreakTheRubber
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), backgroundScaleRatio, SpriteEffects.None, 1);
             spikeBall.Draw(spriteBatch);
 
-            
+
             //DrawLine(spriteBatch, //draw line
             //         new Vector2(0, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //start of line
             //         new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2) //end of line
@@ -291,7 +291,7 @@ namespace DontBreakTheRubber
         public void StartGame()
         {
             backgroundScaleRatio = screenWidth / backgroundTexture.Width;
-            groundHeight = (backgroundTexture.Height - 240) * backgroundScaleRatio;
+            groundHeight = (backgroundTexture.Height - 370) * backgroundScaleRatio;
             System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
             System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
             System.Diagnostics.Debug.WriteLine(groundHeight);
@@ -317,12 +317,12 @@ namespace DontBreakTheRubber
                 if (angle > 240 && angle < 300)
                 {
                     score += 3;
-                    ballBounceSpeed += -200;
+                    ballBounceSpeed += -400;
                 }
                 else
                 {
                     score++;
-                    ballBounceSpeed += -100;
+                    ballBounceSpeed += -250;
                 }
                 upToDown = false;
             }
