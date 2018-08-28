@@ -182,6 +182,31 @@ namespace DontBreakTheRubber
         }
 
 
+        void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end)
+        {
+            Vector2 edge = end - start;
+            // calculate angle to rotate line
+            float angle =
+                (float)Math.Atan2(edge.Y, edge.X);
+
+            Texture2D t = new Texture2D(GraphicsDevice, 1, 1);
+            t.SetData<Color>(
+                new Color[] { Color.Red });
+            sb.Draw(t,
+                new Rectangle(// rectangle defines shape of line and position of start of line
+                    (int)start.X,
+                    (int)start.Y,
+                    (int)edge.Length(), //sb will strech the texture to fill this rectangle
+                    10), //width of line, change this to make thicker line
+                null,
+                Color.Red, //colour of line
+                angle,     //angle of line (calulated above)
+                new Vector2(0, 0), // point in line about which to rotate
+                SpriteEffects.None,
+                0);
+
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue); // Clear the screen
@@ -212,7 +237,13 @@ namespace DontBreakTheRubber
 
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), backgroundScaleRatio, SpriteEffects.None, 1);
             spikeBall.Draw(spriteBatch);
+
             
+            DrawLine(spriteBatch, //draw line
+                     new Vector2(0, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //start of line
+                     new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2) //end of line
+            );
+
             if (gameOver)
             {
                  
