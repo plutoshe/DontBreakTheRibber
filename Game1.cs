@@ -317,12 +317,12 @@ namespace DontBreakTheRubber
                 if (angle > 240 && angle < 300)
                 {
                     score += 3;
-                    ballBounceSpeed += -100;
+                    ballBounceSpeed += -200;
                 }
                 else
                 {
                     score++;
-                    ballBounceSpeed += -50;
+                    ballBounceSpeed += -100;
                 }
                 upToDown = false;
             }
@@ -330,7 +330,7 @@ namespace DontBreakTheRubber
             spikeBall.dY = ballBounceSpeed;
             if(score > 0 && (score % 2 == 0))
             {
-                spinSpeed *= (float)1.05;
+                spinSpeed *= (float)1.15;
             }
             spikeBall.dA = spinSpeed;
         }
