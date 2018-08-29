@@ -13,9 +13,6 @@ namespace DontBreakTheRubber
     /// </summary>
     public class Game1 : Game
     {
-
-        const float SKYRATIO = 2f / 3f;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -23,6 +20,7 @@ namespace DontBreakTheRubber
 
         SpriteClass spikeBall;
         SpriteClass balloon;
+        AnimationSprite tramp;
         Texture2D startGameSplash;
         Texture2D gameOverTexture;
 
@@ -63,17 +61,8 @@ namespace DontBreakTheRubber
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            /*graphics.PreferredBackBufferWidth = 600;
-            graphics.PreferredBackBufferHeight = 600;
-            screenWidth = graphics.PreferredBackBufferWidth;
-            screenHeight = graphics.PreferredBackBufferHeight;*/
-            //System.Diagnostics.Debug.WriteLine("aaa" + screenWidth.ToString());
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
-
             screenHeight = ScaleToHighDPI((float)ApplicationView.GetForCurrentView().VisibleBounds.Height);
             screenWidth = ScaleToHighDPI((float)ApplicationView.GetForCurrentView().VisibleBounds.Width);
 
@@ -106,15 +95,43 @@ namespace DontBreakTheRubber
 
             spikeBall = new SpriteClass(GraphicsDevice, "Content/character_test.png", ScaleToHighDPI(1f));
             balloon = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
-
-            //
+            tramp = new AnimationSprite(Content, "tramp_animation", ScaleToHighDPI(1f));
+            
+            // font
             scoreFont = Content.Load<SpriteFont>("Score");
             stateFont = Content.Load<SpriteFont>("GameState");
             _camera = new Camera();
+        }
+
+        public void StartGame()
+        {
+            const int originOfTramp = 400;
+            // background
+            backgroundScaleRatio = screenWidth / backgroundTexture.Width;
+            groundHeight = (backgroundTexture.Height - originOfTramp) * backgroundScaleRatio;
+            System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
+            System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
+            System.Diagnostics.Debug.WriteLine(groundHeight);
+
+            // spikeBall
+            spikeBall.x = screenWidth / 2;
+            spikeBall.y = groundHeight - balloon.texture.Height * balloon.scale / 2;
+            spikeBall.angle = DegreeToRadian(0);
+            spikeBall.dA = 0;
             
+            tramp.x = screenWidth / 2;
+            tramp.y = groundHeight - balloon.texture.Height * balloon.scale / 2 - 120;
+            tramp.active = true;
+            tramp.scale = screenWidth / tramp.frameWidth;
 
+            // ballon
+            balloon.x = screenWidth / 2;
+            balloon.y = groundHeight;
 
-            // TODO: use this.Content to load your game content here
+            // const value
+            score = -1;
+            spinSpeed = 7f;
+            ballBounceSpeed = ScaleToHighDPI(-1200f);
         }
 
         /// <summary>
@@ -142,7 +159,7 @@ namespace DontBreakTheRubber
             {
                 spikeBall.dX = 0;
                 spikeBall.dY = 0;
-                spikeBall.angle = DegreeToRadian(90);
+                spikeBall.angle = DegreeToRadian(0);
                 spikeBall.dA = 0;
                 balloon.dX = 0;
                 balloon.dY = 0;
@@ -155,6 +172,7 @@ namespace DontBreakTheRubber
 
             spikeBall.Update(elapsedTime);
             balloon.Update(elapsedTime);
+            tramp.Update(elapsedTime);
 
             spikeBall.dY += gravitySpeed;
 
@@ -171,6 +189,7 @@ namespace DontBreakTheRubber
                 if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
                     bounce(tempAngle);
+                    tramp.active = true;
                 }
                 else
                 {
@@ -182,7 +201,7 @@ namespace DontBreakTheRubber
         }
 
 
-        void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end)
+        void DrawLine(SpriteBatch sb, Vector2 start, Vector2 end, Color color)
         {
             Vector2 edge = end - start;
             // calculate angle to rotate line
@@ -191,7 +210,7 @@ namespace DontBreakTheRubber
 
             Texture2D t = new Texture2D(GraphicsDevice, 1, 1);
             t.SetData<Color>(
-                new Color[] { Color.Red });
+                new Color[] { color });
             sb.Draw(t,
                 new Rectangle(// rectangle defines shape of line and position of start of line
                     (int)start.X,
@@ -231,18 +250,37 @@ namespace DontBreakTheRubber
                 return;
             }
             
-            System.Diagnostics.Debug.WriteLine(_camera.Transform);
             spriteBatch.Begin(transformMatrix: _camera.Transform);
 
-
+            
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), backgroundScaleRatio, SpriteEffects.None, 1);
+            tramp.Draw(spriteBatch);
             spikeBall.Draw(spriteBatch);
 
 
             //DrawLine(spriteBatch, //draw line
             //         new Vector2(0, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //start of line
-            //         new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2) //end of line
+            //         new Vector2(screenWidth, groundHeight - spikeBall.texture.Height * spikeBall.scale / 2), //end of line
+            //         Color.Red
             //);
+
+            //DrawLine(spriteBatch, //draw line
+            //         new Vector2(0, groundHeight - balloon.texture.Height * balloon.scale / 2), //start of line
+            //         new Vector2(screenWidth, groundHeight - balloon.texture.Height * balloon.scale / 2), //end of line
+            //         Color.Green
+            //);
+            //System.Diagnostics.Debug.WriteLine("============");
+            //System.Diagnostics.Debug.WriteLine(screenHeight);
+            //System.Diagnostics.Debug.WriteLine(screenWidth);
+            //System.Diagnostics.Debug.WriteLine(tramp.frameWidth);
+            //System.Diagnostics.Debug.WriteLine(tramp.frameHeight);
+            //System.Diagnostics.Debug.WriteLine(tramp.scale);
+            //System.Diagnostics.Debug.WriteLine(tramp.frameHeight * tramp.scale);
+           // DrawLine(spriteBatch, //draw line
+           //         new Vector2(0, groundHeight - tramp.frameHeight * tramp.scale / 2), //start of line
+           //         new Vector2(screenWidth, groundHeight - tramp.frameHeight * tramp.scale / 2), //end of line
+           //         Color.Black
+           //);
 
             if (gameOver)
             {
@@ -287,28 +325,6 @@ namespace DontBreakTheRubber
             return f;
         }
 
-
-        public void StartGame()
-        {
-            backgroundScaleRatio = screenWidth / backgroundTexture.Width;
-            groundHeight = (backgroundTexture.Height - 370) * backgroundScaleRatio;
-            System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
-            System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
-            System.Diagnostics.Debug.WriteLine(groundHeight);
-            
-            spikeBall.x = screenWidth / 2;
-
-            spikeBall.y = groundHeight;
-            spikeBall.angle = DegreeToRadian(90);
-            spikeBall.dA = 0;
-
-            balloon.x = screenWidth / 2;
-
-            balloon.y = groundHeight;
-            score = -1;
-            spinSpeed = 7f;
-            ballBounceSpeed = ScaleToHighDPI(-1200f);
-        }
 
         void bounce(float angle)
         {

@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimationSprite.cs" />
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
