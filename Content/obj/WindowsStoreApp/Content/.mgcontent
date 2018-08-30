@@ -4,16 +4,46 @@
   <Platform>WindowsStoreApp</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/background.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/Background_compressed.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/character_sprite.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/character_test.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/game-over.png</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/GameState.spritefont</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/Score.spritefont</File>
-    <File>C:/Users/u0645467/source/repos/DontBreakTheRubber/DontBreakTheRubber/Content/start-splash.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/background.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/Background_compressed.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/character_sprite.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/character_test.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/game-over.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/GameState.spritefont</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/Score.spritefont</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/start-splash.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00000.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00001.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00002.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00003.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00004.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00005.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00006.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00007.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00008.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00009.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00010.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00011.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00012.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00013.png</File>
+    <File>C:/Users/u1209558/source/repos/DontBreakTheRibber/Content/tramp_animation/Tramp_anim_00014.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
