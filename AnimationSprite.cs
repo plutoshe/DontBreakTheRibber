@@ -10,14 +10,17 @@ using System.Threading.Tasks;
 
 namespace DontBreakTheRubber
 {
-    public class AnimationSprite : SpriteClass
+    public class Animation
     {
         float elapsedTime;
         float delayTimeAfterStart = 0;
         bool isPassDelay;
         float frameTime = (float)0.02;
+        int currentFrame;
         int frameCount;
-        
+        public int frameHeight;
+        public int frameWidth;
+
 
         private bool _active = false;
         public bool active
@@ -35,12 +38,11 @@ namespace DontBreakTheRubber
                 }
             }
         }
-        int currentFrame;
+
 
         List<Texture2D> AnimationFrames;
 
-
-        public AnimationSprite(ContentManager contentManager, string contentFolder, float _scale)
+        public Animation(ContentManager contentManager, string contentFolder)
         {
 
             //Load directory info, abort if none
@@ -59,12 +61,10 @@ namespace DontBreakTheRubber
                     contentManager.Load<Texture2D>(contentFolder + "/" + key));
             }
             frameCount = AnimationFrames.Count();
-            textureHeight = AnimationFrames[0].Height;
-            textureWidth = AnimationFrames[0].Width;
-            scale = _scale;
+            frameHeight = AnimationFrames[0].Height;
+            frameWidth = AnimationFrames[0].Width;
         }
-
-        public AnimationSprite(GraphicsDevice graphicsDevice, String dir, float scale)
+        public Animation(GraphicsDevice graphicsDevice, String dir)
         {
             string[] files = System.IO.Directory.GetFiles(dir);
             frameCount = files.Count();
@@ -76,18 +76,27 @@ namespace DontBreakTheRubber
                 var stream = TitleContainer.OpenStream(files[i].Remove(0, "Content/".Length));
                 AnimationFrames.Add(Texture2D.FromStream(graphicsDevice, stream));
             }
-            textureHeight = AnimationFrames[0].Height;
-            textureWidth = AnimationFrames[0].Width;
-            this.texture = AnimationFrames[0];
+            frameHeight = AnimationFrames[0].Height;
+            frameWidth = AnimationFrames[0].Width;
+        }
+        public void Draw(SpriteBatch spriteBatch, float x, float y, float angle, float scale)
+        {
+            // Determine the position vector of the sprite
+            Vector2 spritePosition = new Vector2(x, y);
+
+            // Draw the sprite
+            spriteBatch.Draw(AnimationFrames[currentFrame],
+                spritePosition,
+                null,
+                Color.White,
+                angle,
+                new Vector2(AnimationFrames[currentFrame].Width / 2, AnimationFrames[currentFrame].Height / 2),
+                new Vector2(scale, scale), SpriteEffects.None, 0f);
 
         }
 
         public void Update(float _elapsedTime)
         {
-            System.Diagnostics.Debug.WriteLine("animation update");
-            this.x += this.dX * _elapsedTime;
-            this.y += this.dY * _elapsedTime;
-            this.angle += this.dA * _elapsedTime;
             elapsedTime += _elapsedTime;
             if (active)
             {
@@ -104,23 +113,35 @@ namespace DontBreakTheRubber
             }
             else currentFrame = 0;
         }
+    }
+
+    public class AnimationSprite: SpriteClass
+    {
+        public Animation animation;
+        
+        public AnimationSprite(Animation _animation, float _scale) {
+            this.animation = _animation;
+            textureHeight = _animation.frameHeight;
+            textureWidth = _animation.frameWidth;
+            scale = _scale;
+        }
+
+        
+
+        public void Update(float _elapsedTime)
+        {
+            System.Diagnostics.Debug.WriteLine("animation update");
+            this.x += this.dX * _elapsedTime;
+            this.y += this.dY * _elapsedTime;
+            this.angle += this.dA * _elapsedTime;
+            animation.Update(_elapsedTime);
+            
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Determine the position vector of the sprite
-            Vector2 spritePosition = new Vector2(this.x, this.y);
-
-            // Draw the sprite
-            spriteBatch.Draw(AnimationFrames[currentFrame],
-                spritePosition,
-                null,
-                Color.White,
-                this.angle,
-                new Vector2(AnimationFrames[currentFrame].Width / 2, AnimationFrames[currentFrame].Height / 2),
-                new Vector2(scale, scale), SpriteEffects.None, 0f);
-
+            animation.Draw(spriteBatch, this.x, this.y, this.angle, this.scale);
         }
-
 
     }
 }

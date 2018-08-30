@@ -21,6 +21,9 @@ namespace DontBreakTheRubber
         AnimationSprite spikeBall;
         AnimationSprite realTrampCollisionObejct;
         AnimationSprite tramp;
+        Animation trampAnimation;
+        Animation spikeBallBounceAnimation, spikeCasualAnimation;
+
         Texture2D startGameSplash;
         Texture2D gameOverTexture;
 
@@ -101,10 +104,14 @@ namespace DontBreakTheRubber
             gameOverTexture = Content.Load<Texture2D>("game-over");
             backgroundTexture = Content.Load<Texture2D>("Background_compressed");
 
-            realTrampCollisionObejct = new AnimationSprite(Content, "tramp_animation", ScaleToHighDPI(1f)); 
-            spikeBall = new AnimationSprite(Content, "character_bounce_animation", ScaleToHighDPI(1f));
-            tramp = new AnimationSprite(Content, "tramp_animation", ScaleToHighDPI(1f));
-            
+             
+            spikeBallBounceAnimation = new Animation(Content, "character_bounce_animation");
+            trampAnimation = new Animation(Content, "tramp_animation");
+            //ScaleToHighDPI(1f)
+            realTrampCollisionObejct = new AnimationSprite(trampAnimation, ScaleToHighDPI(1f));
+            spikeBall = new AnimationSprite(spikeBallBounceAnimation, ScaleToHighDPI(1f));
+            tramp = new AnimationSprite(trampAnimation, ScaleToHighDPI(1f));
+
             // font
             scoreFont = Content.Load<SpriteFont>("Score");
             stateFont = Content.Load<SpriteFont>("GameState");
@@ -176,8 +183,8 @@ namespace DontBreakTheRubber
                 if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
                     bounce(tempAngle);
-                    spikeBall.active = true;
-                    tramp.active = true;
+                    spikeBall.animation.active = true;
+                    tramp.animation.active = true;
                 }
                 else
                 {
@@ -338,7 +345,7 @@ namespace DontBreakTheRubber
 
             tramp.x = screenWidth / 2;
             tramp.y = groundHeight - 200;
-            tramp.active = true;
+            tramp.animation.active = true;
             tramp.scale = screenWidth / tramp.textureWidth;
 
 
