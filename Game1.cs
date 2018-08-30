@@ -22,7 +22,7 @@ namespace DontBreakTheRubber
         AnimationSprite realTrampCollisionObejct;
         AnimationSprite tramp;
         Animation trampAnimation;
-        Animation spikeBallBounceAnimation, spikeCasualAnimation;
+        Animation spikeBallBounceAnimation, spikeBallIdleAnimation;
 
         Texture2D startGameSplash;
         Texture2D gameOverTexture;
@@ -106,6 +106,7 @@ namespace DontBreakTheRubber
 
              
             spikeBallBounceAnimation = new Animation(Content, "character_bounce_animation");
+            spikeBallIdleAnimation = new Animation(Content, "character_idle_animation");
             trampAnimation = new Animation(Content, "tramp_animation");
             //ScaleToHighDPI(1f)
             realTrampCollisionObejct = new AnimationSprite(trampAnimation, ScaleToHighDPI(1f));
@@ -149,6 +150,11 @@ namespace DontBreakTheRubber
                 realTrampCollisionObejct.dX = 0;
                 realTrampCollisionObejct.dY = 0;
             }
+            //if (!spikeBall.animation.active)
+            //{
+            //    spikeBall.animation = spikeBallIdleAnimation;
+            //    spikeBall.animation.Start();
+            //}
 
             
             
@@ -183,8 +189,9 @@ namespace DontBreakTheRubber
                 if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
                     bounce(tempAngle);
-                    spikeBall.animation.active = true;
                     tramp.animation.active = true;
+                    spikeBall.animation = spikeBallBounceAnimation;
+                    spikeBall.animation.Start();
                 }
                 else
                 {
@@ -284,7 +291,6 @@ namespace DontBreakTheRubber
             }
             spriteBatch.Begin(transformMatrix: _camera.Transform);
 
-            
             spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), backgroundScaleRatio, SpriteEffects.None, 1);
             tramp.Draw(spriteBatch);
             spikeBall.Draw(spriteBatch);
@@ -342,6 +348,7 @@ namespace DontBreakTheRubber
             spikeBall.y = groundHeight- realTrampCollisionObejct.textureHeight * realTrampCollisionObejct.scale / 2;
             spikeBall.angle = DegreeToRadian(0);
             spikeBall.dA = 0;
+            spikeBall.animation.active = true;
 
             tramp.x = screenWidth / 2;
             tramp.y = groundHeight - 200;

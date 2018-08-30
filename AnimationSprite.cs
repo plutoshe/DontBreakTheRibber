@@ -79,6 +79,13 @@ namespace DontBreakTheRubber
             frameHeight = AnimationFrames[0].Height;
             frameWidth = AnimationFrames[0].Width;
         }
+
+        public void Start()
+        {
+            currentFrame = 0;
+            active = true;
+        }
+
         public void Draw(SpriteBatch spriteBatch, float x, float y, float angle, float scale)
         {
             // Determine the position vector of the sprite
@@ -126,7 +133,6 @@ namespace DontBreakTheRubber
             scale = _scale;
         }
 
-        
 
         public void Update(float _elapsedTime)
         {
