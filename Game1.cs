@@ -90,6 +90,8 @@ namespace DontBreakTheRubber
             spinSpeed = 7f;
             previousSpeed = spikeBall.dY;
 
+            backgroundScaleRatio = screenWidth / backgroundTexture.Width;
+
             ballBounceSpeed = ScaleToHighDPI(-1200f);
             gravitySpeed = ScaleToHighDPI(30f);
             score = 0;
@@ -165,11 +167,12 @@ namespace DontBreakTheRubber
 
             if (previousSpeed < 0 && spikeBall.dY >= 0)
             {
-                if ((int)(spikeBall.texture.Height * spikeBall.scale / 2) > score)
-                {
-                    score = (int)(spikeBall.texture.Height * spikeBall.scale / 2);
-                }
                 upToDown = true;
+            }
+
+            if ((int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.texture.Height) * backgroundScaleRatio) > score)
+            {
+                score = (int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.texture.Height) * backgroundScaleRatio);
             }
 
             if (spikeBall.y > groundHeight)
@@ -342,7 +345,6 @@ namespace DontBreakTheRubber
 
         public void StartGame()
         {
-            backgroundScaleRatio = screenWidth / backgroundTexture.Width;
             groundHeight = (backgroundTexture.Height - 370) * backgroundScaleRatio;
             System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
             System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
