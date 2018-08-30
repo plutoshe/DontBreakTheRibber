@@ -109,9 +109,9 @@ namespace DontBreakTheRubber
             // background
             backgroundScaleRatio = screenWidth / backgroundTexture.Width;
             groundHeight = (backgroundTexture.Height - originOfTramp) * backgroundScaleRatio;
-            System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
-            System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
-            System.Diagnostics.Debug.WriteLine(groundHeight);
+            //System.Diagnostics.Debug.WriteLine(backgroundTexture.Height);
+            //System.Diagnostics.Debug.WriteLine(backgroundScaleRatio);
+            //System.Diagnostics.Debug.WriteLine(groundHeight);
 
             // spikeBall
             spikeBall.x = screenWidth / 2;
@@ -184,7 +184,7 @@ namespace DontBreakTheRubber
             
             if (spikeBall.RectangleCollision(balloon) && spikeBall.dY >= 0)
             {
-                System.Diagnostics.Debug.WriteLine(spikeBall.angle);
+              //  System.Diagnostics.Debug.WriteLine(spikeBall.angle);
                 float tempAngle = ((float)RadianToDegree(spikeBall.angle) % 360);
                 if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
@@ -344,6 +344,7 @@ namespace DontBreakTheRubber
             }
 
             spikeBall.dY = ballBounceSpeed;
+            spikeBall.angle = DegreeToRadian(120);
             if(score > 0 && (score % 2 == 0))
             {
                 spinSpeed *= (float)1.15;
