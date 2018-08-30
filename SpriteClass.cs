@@ -8,66 +8,41 @@ using System.Threading.Tasks;
 
 namespace DontBreakTheRubber
 {
-    class SpriteClass
+    public class SpriteClass
     {
         const float HITBOXSCALE = .5f; // experiment with this value to make the collision detection more or less forgiving
+
+        public int textureHeight, textureWidth;
 
         // sprite texture
         public Texture2D texture
         {
             get;
+            set;
         }
 
         // x coordinate of the center of the sprite
-        public float x
-        {
-            get;
-            set;
-        }
+        public float x;
 
         // y coordinate of the center of the sprite
-        public float y
-        {
-            get;
-            set;
-        }
-
+        public float y;
         // Angle of the sprite around central axis
-        public float angle
-        {
-            get;
-            set;
-        }
+        public float angle;
 
         // Rate of change of x per second
-        public float dX
-        {
-            get;
-            set;
-        }
+        public float dX;
 
         // Rate of change of y per second
-        public float dY
-        {
-            get;
-            set;
-        }
+        public float dY;
 
         // Rate of change of angle per second
-        public float dA
-        {
-            get;
-            set;
-        }
+        public float dA;
+        public float scale;
 
-        // Scale of the texture, where 1 is its true size
-        public float scale
-        {
-            get;
-            set;
-        }
 
         // Constructor
+        public SpriteClass() { }
+
         public SpriteClass(GraphicsDevice graphicsDevice, string textureName, float scale)
         {
             this.scale = scale;
@@ -75,11 +50,14 @@ namespace DontBreakTheRubber
             // Load the specified texture
             var stream = TitleContainer.OpenStream(textureName);
             texture = Texture2D.FromStream(graphicsDevice, stream);
+            textureHeight = texture.Height;
+            textureWidth = texture.Width;
         }
 
         // Update the position and angle of the sprite based on each rate of change and the time elapsed
         public void Update(float elapsedTime)
         {
+            System.Diagnostics.Debug.WriteLine("spriteClass update");
             this.x += this.dX * elapsedTime;
             this.y += this.dY * elapsedTime;
             this.angle += this.dA * elapsedTime;
@@ -98,12 +76,14 @@ namespace DontBreakTheRubber
         // Detect collision between two rectangular sprites
         public bool RectangleCollision(SpriteClass otherSprite)
         {
-            if (this.x + this.texture.Width * this.scale * HITBOXSCALE / 2 < otherSprite.x - otherSprite.texture.Width * otherSprite.scale / 2) return false;
-            if (this.y + this.texture.Height * this.scale * HITBOXSCALE / 2 < otherSprite.y - otherSprite.texture.Height * otherSprite.scale / 2) return false;
-            if (this.x - this.texture.Width * this.scale * HITBOXSCALE / 2 > otherSprite.x + otherSprite.texture.Width * otherSprite.scale / 2) return false;
-            if (this.y - this.texture.Height * this.scale * HITBOXSCALE / 2 > otherSprite.y + otherSprite.texture.Height * otherSprite.scale / 2) return false;
+            if (this.x + this.textureWidth * this.scale * HITBOXSCALE / 2 < otherSprite.x - otherSprite.textureWidth * otherSprite.scale / 2) return false;
+            if (this.y + this.textureHeight * this.scale * HITBOXSCALE / 2 < otherSprite.y - otherSprite.textureHeight * otherSprite.scale / 2) return false;
+            if (this.x - this.textureWidth * this.scale * HITBOXSCALE / 2 > otherSprite.x + otherSprite.textureWidth * otherSprite.scale / 2) return false;
+            if (this.y - this.textureHeight * this.scale * HITBOXSCALE / 2 > otherSprite.y + otherSprite.textureHeight * otherSprite.scale / 2) return false;
             return true;
         }
 
     }
+
+   
 }

@@ -17,7 +17,7 @@ namespace DontBreakTheRubber.Core
             var position = Matrix.CreateTranslation(
                 //-target_position.X - (target_rectangle.Width / 2),
                 0,
-                -target.y - (target.texture.Height / 2), 0);
+                -target.y - (target.textureHeight / 2), 0);
 
             var offset = Matrix.CreateTranslation(0, Game1.screenHeight / 2, 0);
             //Console.WriteLine("pos: " + position.ToString());

@@ -18,8 +18,8 @@ namespace DontBreakTheRubber
 
         int score = 0;
 
-        SpriteClass spikeBall;
-        SpriteClass balloon;
+        AnimationSprite spikeBall;
+        AnimationSprite realTrampCollisionObejct;
         AnimationSprite tramp;
         Texture2D startGameSplash;
         Texture2D gameOverTexture;
@@ -101,8 +101,8 @@ namespace DontBreakTheRubber
             gameOverTexture = Content.Load<Texture2D>("game-over");
             backgroundTexture = Content.Load<Texture2D>("Background_compressed");
 
-            spikeBall = new SpriteClass(GraphicsDevice, "Content/character_test.png", ScaleToHighDPI(1f));
-            balloon = new SpriteClass(GraphicsDevice, "Content/character_sprite.png", ScaleToHighDPI(1f));
+            realTrampCollisionObejct = new AnimationSprite(Content, "tramp_animation", ScaleToHighDPI(1f)); 
+            spikeBall = new AnimationSprite(Content, "character_bounce_animation", ScaleToHighDPI(1f));
             tramp = new AnimationSprite(Content, "tramp_animation", ScaleToHighDPI(1f));
             
             // font
@@ -139,14 +139,14 @@ namespace DontBreakTheRubber
                 spikeBall.dY = 0;
                 spikeBall.angle = DegreeToRadian(0);
                 spikeBall.dA = 0;
-                balloon.dX = 0;
-                balloon.dY = 0;
+                realTrampCollisionObejct.dX = 0;
+                realTrampCollisionObejct.dY = 0;
             }
 
             
             
             spikeBall.Update(elapsedTime);
-            balloon.Update(elapsedTime);
+            realTrampCollisionObejct.Update(elapsedTime);
             tramp.Update(elapsedTime);
 
             //TODO Fix Score
@@ -158,9 +158,9 @@ namespace DontBreakTheRubber
                 upToDown = true;
             }
 
-            if ((int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.texture.Height) * backgroundScaleRatio) > score)
+            if ((int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.textureHeight) * backgroundScaleRatio) > score)
             {
-                score = (int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.texture.Height) * backgroundScaleRatio);
+                score = (int)((backgroundTexture.Height * backgroundScaleRatio) - (backgroundTexture.Height - spikeBall.textureHeight) * backgroundScaleRatio);
             }
 
             if (spikeBall.y > groundHeight)
@@ -169,13 +169,14 @@ namespace DontBreakTheRubber
                 spikeBall.y = groundHeight;
             }
             
-            if (spikeBall.RectangleCollision(balloon) && spikeBall.dY >= 0)
+            if (spikeBall.RectangleCollision(realTrampCollisionObejct) && spikeBall.dY >= 0)
             {
               //  System.Diagnostics.Debug.WriteLine(spikeBall.angle);
                 float tempAngle = ((float)RadianToDegree(spikeBall.angle) % 360);
                 if((tempAngle > 240 || tempAngle <= 120) && !gameOver && gameStarted)
                 {
                     bounce(tempAngle);
+                    spikeBall.active = true;
                     tramp.active = true;
                 }
                 else
@@ -305,7 +306,7 @@ namespace DontBreakTheRubber
             }
 
             
-            //balloon.Draw(spriteBatch);
+            //realTrampCollisionObejct.Draw(spriteBatch);
 
             
 
@@ -327,22 +328,22 @@ namespace DontBreakTheRubber
 
         public void StartGame()
         {
-            const int originOfTramp = 400;
+            const int originOfTramp = 200;
             groundHeight = (backgroundTexture.Height - originOfTramp) * backgroundScaleRatio;
             
             spikeBall.x = screenWidth / 2;
-            spikeBall.y = groundHeight - balloon.texture.Height * balloon.scale / 2;
+            spikeBall.y = groundHeight- realTrampCollisionObejct.textureHeight * realTrampCollisionObejct.scale / 2;
             spikeBall.angle = DegreeToRadian(0);
             spikeBall.dA = 0;
 
             tramp.x = screenWidth / 2;
-            tramp.y = groundHeight - balloon.texture.Height * balloon.scale / 2 - 120;
+            tramp.y = groundHeight - 200;
             tramp.active = true;
-            tramp.scale = screenWidth / tramp.frameWidth;
+            tramp.scale = screenWidth / tramp.textureWidth;
 
 
-            balloon.x = screenWidth / 2;
-            balloon.y = groundHeight;
+            realTrampCollisionObejct.x = screenWidth / 2;
+            realTrampCollisionObejct.y = groundHeight;
             score = 0;
             spinSpeed = 7f;
             ballBounceSpeed = ScaleToHighDPI(-1200f);
